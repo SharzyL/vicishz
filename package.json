@@ -1,0 +1,61 @@
+{
+  "$schema": "https://raw.githubusercontent.com/vicinaehq/vicinae/refs/heads/main/extra/schemas/extension.json",
+  "name": "vicishz",
+  "title": "SharzyL's Tools",
+  "description": "Collection of Sharzy's vicinae extensions for personal use",
+  "categories": [],
+  "license": "MIT",
+  "author": "SharzyL",
+  "contributors": [],
+  "pastContributors": [],
+  "icon": "shz.png",
+  "commands": [
+    {
+      "name": "niri-windows",
+      "title": "Niri Windows",
+      "subtitle": "Window switcher for Niri",
+      "description": "List and focus windows in Niri compositor",
+      "mode": "view",
+      "icon": "niri.svg"
+    },
+    {
+      "name": "kitty-windows",
+      "title": "Kitty Windows",
+      "subtitle": "Window switcher for Kitty",
+      "description": "List and focus windows across all Kitty terminal instances",
+      "mode": "view",
+      "icon": "kitty-framed.svg"
+    },
+    {
+      "name": "rdict",
+      "title": "RDict",
+      "subtitle": "AI-powered dictionary",
+      "description": "Look up words and phrases using AI-powered dictionary",
+      "mode": "view",
+      "icon": "dict.png"
+    },
+    {
+      "name": "rdict-quick",
+      "title": "RDict - Quick Lookup",
+      "subtitle": "Dictionary from clipboard",
+      "description": "Quick dictionary lookup from clipboard, fallback to manual input",
+      "mode": "view",
+      "icon": "dict.png"
+    }
+  ],
+  "preferences": [],
+  "scripts": {
+    "build": "vici build",
+    "dev": "vici develop",
+    "format": "biome format --write src",
+    "lint": "vici lint"
+  },
+  "dependencies": {
+    "@vicinae/api": "^0.16.14",
+    "undici": "^6.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.2",
+    "typescript": "^5.9.2"
+  }
+}
