@@ -1,7 +1,9 @@
 { lib
 , stdenv
 , nodejs
-, yarn-berry
+, pnpmConfigHook
+, fetchPnpmDeps
+, pnpm
 }:
 
 stdenv.mkDerivation (finalAttrs: {
@@ -15,24 +17,21 @@ stdenv.mkDerivation (finalAttrs: {
       ./.;
   };
 
-  offlineCache = yarn-berry.fetchYarnBerryDeps {
-    inherit (finalAttrs) src missingHashes;
-    hash = "sha256-+Znh7DHMwZwn5j8Oac3Cv8V4R9qvRWYVsh37GoObn1Q=";
+  pnpmDeps = fetchPnpmDeps {
+    inherit (finalAttrs) pname version src;
+    fetcherVersion = 3;
+    hash = "sha256-XdRGKLfCLZ+TEDPB7p9Bnr/GKKVWRw8QXi7QF+l7Mys=";
   };
 
   buildPhase = ''
     runHook preBuild
-    yarn build -o $out
+    pnpm build -o $out
     runHook postBuild
   '';
 
-  # run `nix run nixpkgs#yarn-berry.yarn-berry-fetcher missing-hashes yarn.lock > missing-hashes.json` to update
-  missingHashes = ./missing-hashes.json;
-
   nativeBuildInputs = [
-    yarn-berry
-    yarn-berry.yarnBerryConfigHook
-    # Needed for executing package.json scripts
     nodejs
+    pnpm
+    pnpmConfigHook
   ];
 })
